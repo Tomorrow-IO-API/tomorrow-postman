@@ -1,0 +1,1407 @@
+{
+	"info": {
+		"_postman_id": "f71ecaad-cc12-4129-a510-8b6ef0ed31c7",
+		"name": "ClimaCell API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "timelines",
+			"item": [
+				{
+					"name": "Retrieve Timelines (Basic)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b2bb1a40-91cb-4ccf-96d6-976319c750a8",
+								"exec": [
+									"var moment = require('moment');",
+									"var now = moment.utc();",
+									"",
+									"var startTime = moment.utc(now).add(0, 'minutes');",
+									"var endTime = moment.utc(endTime).add(360, 'minutes');",
+									"var fields = [\"precipitationIntensity\"];",
+									"var timesteps = [\"1m\"];",
+									"var location = [42.3492721,-71.0573512];",
+									"",
+									"pm.environment.set('startTime', startTime.toISOString());",
+									"pm.environment.set('endTime', endTime.toISOString());",
+									"pm.environment.set('fields', fields);",
+									"pm.environment.set('timesteps', timesteps);",
+									"pm.environment.set('location', location);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/timelines?location={{location}}&fields={{fields}}&startTime={{startTime}}&endTime={{endTime}}&timesteps={{timesteps}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"timelines"
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "{{location}}",
+									"description": "(Required) ID of a pre-defined location or latlong string"
+								},
+								{
+									"key": "fields",
+									"value": "{{fields}}",
+									"description": "(Required) Selected fields from our data layers (polygon/polyline default to Max, if not suffix is not specified)"
+								},
+								{
+									"key": "startTime",
+									"value": "{{startTime}}",
+									"description": "Start time in ISO 8601 format \"2019-03-20T14:09:50Z\" (defaults to now)"
+								},
+								{
+									"key": "endTime",
+									"value": "{{endTime}}",
+									"description": "End time in ISO 8601 format \"2019-03-20T14:09:50Z\" "
+								},
+								{
+									"key": "timesteps",
+									"value": "{{timesteps}}",
+									"description": "Timesteps of the timelines: \"1m\", \"5m\", \"15m\", \"30m\", \"1h\", \"1d\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Timelines (Advanced)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "59fb0779-da7b-4817-9ada-5da70b01bfa6",
+								"exec": [
+									"var moment = require('moment');",
+									"var now = moment.utc();",
+									"",
+									"var startTime = moment.utc(now).add(0, 'minutes').toISOString();",
+									"var endTime = moment.utc(endTime).add(360, 'minutes').toISOString();",
+									"var fields = [\"precipitationIntensity\"];",
+									"var timesteps = [\"1m\"];",
+									"var location = {",
+									"    \"type\": \"Point\",",
+									"    \"coordinates\": [",
+									"        -71.0573512,42.3492721",
+									"    ]",
+									"}",
+									"",
+									"var body = {",
+									"    startTime, // Start time in ISO 8601 format \"2019-03-20T14:09:50Z\" (defaults to now)",
+									"    endTime, // End time in ISO 8601 format \"2019-03-20T14:09:50Z\" ",
+									"    fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if not suffix is not specified)",
+									"    timesteps, // Timesteps of the timelines: \"1m\", \"5m\", \"15m\", \"30m\", \"1h\", \"1d\"",
+									"    location // (Required) ID of a pre-defined location or latlong string",
+									"}",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/timelines",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"timelines"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "Retrieve Events (Basic)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1af39c22-a2ae-438e-aa35-53708b444ce2",
+								"exec": [
+									"var location = [42.3492721,-71.0573512];",
+									"var insights = [\"fires\"];",
+									"var buffer = 1;",
+									"",
+									"pm.environment.set('location', location);",
+									"pm.environment.set('insights', insights);",
+									"pm.environment.set('buffer', buffer);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events?location={{location}}&insights={{insights}}&buffer={{buffer}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "{{location}}",
+									"description": "(Required) ID of a pre-defined location or latlong string"
+								},
+								{
+									"key": "insights",
+									"value": "{{insights}}",
+									"description": "(Required) Pre-defined category names or custom insight IDs"
+								},
+								{
+									"key": "buffer",
+									"value": "{{buffer}}",
+									"description": "The buffer around locations, in case of pre-defined insight categories (in km)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Events (Advanced)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2a17e137-0e90-4dd2-81ef-4a2d102d90a8",
+								"exec": [
+									"var location = {",
+									"    \"type\": \"Point\",",
+									"    \"coordinates\": [",
+									"        -71.0573512,42.3492721",
+									"    ]",
+									"}",
+									"var insights = [\"fires\"];",
+									"var buffer = 1;",
+									"",
+									"var body = {",
+									"    location, // ID of a pre-defined location, GeoJSON geometry or latlong array",
+									"    insights, // (Required) Pre-defined category names or custom insight IDs",
+									"    buffer // The buffer around locations, in case of pre-defined insight categories (in km, defaults to 1)",
+									"}",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "route",
+			"item": [
+				{
+					"name": "Retrieve a Route (Advanced)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "509edd25-8a05-4c75-a20d-073ddec70380",
+								"exec": [
+									"var moment = require('moment');",
+									"var now = moment.utc();",
+									"",
+									"var startTime = moment.utc(now).add(360, 'minutes').toISOString();",
+									"var fields = [\"precipitationIntensity\"];",
+									"var timestep = \"5m\";",
+									"var legs = [{\"duration\":10,\"location\":{\"coordinates\":[[34.78187,32.08528],[34.78182,32.08529],[34.78172,32.08531],[34.78164,32.08531],[34.78152,32.08534],[34.7809,32.08549]],\"type\":\"LineString\"}},{\"duration\":3,\"location\":{\"coordinates\":[[34.7809,32.08549],[34.78098,32.08583],[34.78105,32.08614],[34.78117,32.08684],[34.78121,32.08705],[34.78135,32.08769],[34.78149,32.08832]],\"type\":\"LineString\"}},{\"duration\":9,\"location\":{\"coordinates\":[[34.78149,32.08832],[34.78215,32.08817],[34.78231,32.08814]],\"type\":\"LineString\"}},{\"duration\":2,\"location\":{\"coordinates\":[[34.78231,32.08814],[34.78242,32.08812],[34.78243,32.08818],[34.78246,32.08834],[34.7827,32.08949],[34.78281,32.09013],[34.78291,32.0907],[34.78292,32.09075],[34.78292,32.0908],[34.78294,32.09091],[34.78295,32.09096],[34.78296,32.091],[34.78305,32.09154],[34.78308,32.09165],[34.7831,32.09174],[34.78321,32.09234],[34.78331,32.09286],[34.7835,32.09384],[34.78351,32.0939],[34.78353,32.09401],[34.78355,32.09413],[34.78371,32.09498],[34.78371,32.09516],[34.78371,32.09523],[34.78373,32.09532],[34.78373,32.09538],[34.78374,32.09543],[34.78374,32.09555],[34.78374,32.09556],[34.78374,32.09565],[34.78373,32.09583],[34.78372,32.0959],[34.78372,32.09592],[34.78372,32.09595],[34.78372,32.09604],[34.78371,32.09613],[34.7837,32.09631],[34.78368,32.09658],[34.78368,32.09667],[34.78367,32.09671],[34.78367,32.0968],[34.78366,32.09687],[34.78365,32.09701],[34.78364,32.09725],[34.78364,32.09735],[34.78362,32.09761],[34.78361,32.09771],[34.78359,32.09805],[34.78358,32.09822]],\"type\":\"LineString\"}},{\"duration\":5,\"location\":{\"coordinates\":[[34.78358,32.09822],[34.78362,32.09834],[34.78364,32.09838],[34.78369,32.09844],[34.7837,32.09844],[34.78376,32.0985],[34.78377,32.0985],[34.78392,32.09861],[34.78405,32.09861],[34.78414,32.09862],[34.78462,32.09864],[34.78527,32.09867],[34.78685,32.09875],[34.78806,32.09882],[34.78895,32.09888],[34.78903,32.0989],[34.78971,32.09899],[34.7902,32.09909],[34.79049,32.09915],[34.79063,32.09918],[34.79087,32.09922],[34.79107,32.09926]],\"type\":\"LineString\"}}]",
+									"",
+									"var body = {",
+									"    startTime, // Start time in ISO 8601 format \"2019-03-20T14:09:50Z\" (defaults to now)",
+									"    legs, // (Required) Collection of route segments, each represented as a pair of location object and a duration (in minutes)",
+									"    fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if no suffix is specified)",
+									"    timestep, // Timestep of the route: \"5m\", \"10m\", \"15m\", \"30m\", \"60m\"",
+									"}",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/route",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"route"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f54b8f95-96d6-4ea7-a255-425e78b20724",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c3d102e-9151-4018-976e-48902ee490c9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "map",
+			"item": [
+				{
+					"name": "Retrieve a Tile (Basic)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dd64da73-1a95-4f5d-a0bd-b07dfd2fc550",
+								"exec": [
+									"var moment = require('moment');",
+									"var now = moment.utc();",
+									"",
+									"var zoom = 5;",
+									"var x = 2;",
+									"var y = 3;",
+									"var field = \"precipitationIntensity\";",
+									"var time = moment.utc(now).add(0, 'minutes').toISOString();",
+									"var format = \"png\"",
+									"",
+									"pm.environment.set('zoom', zoom);",
+									"pm.environment.set('x', x);",
+									"pm.environment.set('y', y);",
+									"pm.environment.set('field', field);",
+									"pm.environment.set('timeFormat', time + \".\" + format);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/map/tile/:zoom/:x/:y/:field/:timeFormat",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"map",
+								"tile",
+								":zoom",
+								":x",
+								":y",
+								":field",
+								":timeFormat"
+							],
+							"variable": [
+								{
+									"key": "zoom",
+									"value": "{{zoom}}",
+									"description": "(Required) The zoom level for the map, 1-12\n\n"
+								},
+								{
+									"key": "x",
+									"value": "{{x}}",
+									"type": "string",
+									"description": "(Required) The “x” coordinate for the map"
+								},
+								{
+									"key": "y",
+									"value": "{{y}}",
+									"type": "string",
+									"description": "(Required) The “y” coordinate for the map"
+								},
+								{
+									"key": "field",
+									"value": "{{field}}",
+									"type": "string",
+									"description": "(Required) Selected fields from our data layers"
+								},
+								{
+									"key": "timeFormat",
+									"value": "{{timeFormat}}",
+									"description": "Timestamp in ISO 8601 format (defaults to now) and the format of the returned tiles (defaults to .png)\n\n"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "locations",
+			"item": [
+				{
+					"name": "List Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a Location",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a9d3a248-226d-4752-b04a-4ce1a49e74b0",
+								"exec": [
+									"var locationId = \"5fb7dc8fd4f7cd0008a64456\";",
+									"",
+									"pm.environment.set('locationId', locationId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations/:locationId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								":locationId"
+							],
+							"variable": [
+								{
+									"key": "locationId",
+									"value": "{{locationId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined location"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Location",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9d0cfffd-588d-48f6-abe5-a863ec7b4bd7",
+								"exec": [
+									"var moment = require('moment');",
+									"var now = moment.utc();",
+									"",
+									"var name = \"ClimaCell Headquarters\";",
+									"var geometry = {",
+									"    \"type\": \"Point\",",
+									"    \"coordinates\": [",
+									"        -71.0573512,42.3492721",
+									"    ]",
+									"};",
+									"",
+									"var body = {",
+									"    name, // (Required) The name of the location",
+									"    geometry, // (Required) The GeoJSON geometry representation of the location object",
+									"}",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Location",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "12a102cf-045f-4a76-9d09-2ced6f97b94c",
+								"exec": [
+									"var locationId = \"5fb7dc8fd4f7cd0008a64456\";",
+									"",
+									"pm.environment.set('locationId', locationId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations/:locationId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								":locationId"
+							],
+							"variable": [
+								{
+									"key": "locationId",
+									"value": "{{locationId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined location"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "insights",
+			"item": [
+				{
+					"name": "List Insights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/insights",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"insights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve an Insight",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d4491980-3026-402d-bb65-094982df72d1",
+								"exec": [
+									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\";",
+									"",
+									"pm.environment.set('insightId', insightId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/insights/:insightId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"insights",
+								":insightId"
+							],
+							"variable": [
+								{
+									"key": "insightId",
+									"value": "{{insightId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined insight"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Insight",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fec15fce-0a10-4684-9b4d-06eafcb9aba6",
+								"exec": [
+									"var name = \"Mild Rain\";",
+									"var conditions = {",
+									"    \"type\": \"OPERATOR\",",
+									"    \"content\": {",
+									"        \"operator\": \"AND\"",
+									"    },",
+									"    \"children\": [{",
+									"            \"type\": \"OPERATOR\",",
+									"            \"content\": {",
+									"                \"operator\": \"EQUAL\"",
+									"            },",
+									"            \"children\": [{",
+									"                    \"type\": \"PARAMETER\",",
+									"                    \"content\": {",
+									"                        \"parameter\": \"precipitationType\"",
+									"                    }",
+									"                },",
+									"                {",
+									"                    \"type\": \"CONST\",",
+									"                    \"content\": {",
+									"                        \"const\": \"rain\"",
+									"                    }",
+									"                }",
+									"            ]",
+									"        },",
+									"        {",
+									"            \"type\": \"OPERATOR\",",
+									"            \"content\": {",
+									"                \"operator\": \"GREATER\"",
+									"            },",
+									"            \"children\": [{",
+									"                    \"type\": \"PARAMETER\",",
+									"                    \"content\": {",
+									"                        \"parameter\": \"precipitationIntensity\"",
+									"                    }",
+									"                },",
+									"                {",
+									"                    \"type\": \"CONST\",",
+									"                    \"content\": {",
+									"                        \"const\": 0.5",
+									"                    }",
+									"                }",
+									"            ]",
+									"        }",
+									"",
+									"    ]",
+									"};",
+									"",
+									"var body = {",
+									"    name, // (Required) The name of the insight",
+									"    conditions, // (Required) The conditions for which the linked locations will be checked",
+									"}",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/insights",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"insights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an Insight",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9857bf27-03b8-47c3-82d6-0b27dea683fc",
+								"exec": [
+									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\"",
+									"var name = \"Mild Rain\";",
+									"var conditions = {",
+									"    \"type\": \"OPERATOR\",",
+									"    \"content\": {",
+									"        \"operator\": \"AND\"",
+									"    },",
+									"    \"children\": [{",
+									"            \"type\": \"OPERATOR\",",
+									"            \"content\": {",
+									"                \"operator\": \"EQUAL\"",
+									"            },",
+									"            \"children\": [{",
+									"                    \"type\": \"PARAMETER\",",
+									"                    \"content\": {",
+									"                        \"parameter\": \"precipitationType\"",
+									"                    }",
+									"                },",
+									"                {",
+									"                    \"type\": \"CONST\",",
+									"                    \"content\": {",
+									"                        \"const\": \"rain\"",
+									"                    }",
+									"                }",
+									"            ]",
+									"        },",
+									"        {",
+									"            \"type\": \"OPERATOR\",",
+									"            \"content\": {",
+									"                \"operator\": \"GREATER\"",
+									"            },",
+									"            \"children\": [{",
+									"                    \"type\": \"PARAMETER\",",
+									"                    \"content\": {",
+									"                        \"parameter\": \"precipitationIntensity\"",
+									"                    }",
+									"                },",
+									"                {",
+									"                    \"type\": \"CONST\",",
+									"                    \"content\": {",
+									"                        \"const\": 0.5",
+									"                    }",
+									"                }",
+									"            ]",
+									"        }",
+									"",
+									"    ]",
+									"};",
+									"",
+									"var body = {",
+									"    name, // (Required) The name of the insight",
+									"    conditions, // (Required) The conditions for which the linked locations will be checked",
+									"}",
+									"",
+									"pm.environment.set('insightId', insightId)",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/insights/:insightId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"insights",
+								":insightId"
+							],
+							"variable": [
+								{
+									"key": "insightId",
+									"value": "{{insightId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined insight"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Insight",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "adf1f121-3f44-4272-bff8-1160859b31e2",
+								"exec": [
+									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\";",
+									"",
+									"pm.environment.set('insightId', insightId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/insights/:insightId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"insights",
+								":insightId"
+							],
+							"variable": [
+								{
+									"key": "insightId",
+									"value": "{{insightId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined insight"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "alerts",
+			"item": [
+				{
+					"name": "List Alerts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve an Alert",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fa84fa60-90a7-452d-ba20-d22d561cf6f0",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Alert",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "55e3bb44-5831-4ac5-aa5e-77d33ad8a3c5",
+								"exec": [
+									"var name = \"Mild Rain at the ClimaCell Headquarters\";",
+									"var insight = \"3314686b-0525-4cd0-908e-f110df44ab23\";",
+									"var isActive = true;",
+									"var notifications = [",
+									"  {\"type\": \"PRIOR\", \"value\": 30},",
+									"  {\"type\": \"START\"},",
+									"  {\"type\": \"END\"}",
+									"];",
+									"",
+									"var body = {",
+									"    name,  // (Required) The name of the alert",
+									"    insight, // (Required) ID of a custom insight or pre-defined category",
+									"    isActive, // Defines whether the alert triggers notifications to the webhook",
+									"    notifications // The configuration of the notifications sent to the webhook (before, start and end of an event in which insight conditions are met)",
+									"};",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/alerts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an Alert",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dbaaec72-7b5e-4cf1-93e3-14501d464ec3",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"var name = \"Mild Rain at the ClimaCell Headquarters\";",
+									"var notifications = [",
+									"  {\"type\": \"PRIOR\", \"value\": 30},",
+									"  {\"type\": \"START\"},",
+									"  {\"type\": \"END\"}",
+									"];",
+									"",
+									"var body = {",
+									"    name,  // (Required) The name of the alert",
+									"    notifications // The configuration of the notifications sent to the webhook (before, start and end of an event in which insight conditions are met)",
+									"};",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Linked Locations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a385fbbb-a3f6-4620-b607-8aa075789c49",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId",
+								"locations"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Link Locations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "569d1a60-0609-4b6f-8331-7b89e52c69a6",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"var locations = [\"5fd9dfc6ffcd6e00075e4ac0\"];",
+									"",
+									"var body = {",
+									"    locations // (Required) The list of Point locations by ID to be linked to this alert",
+									"};",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId/locations/link",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId",
+								"locations",
+								"link"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlink Locations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "718686b2-5adb-4279-8349-8eb8074ff4b8",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"var locations = [\"5fd9dfc6ffcd6e00075e4ac0\"];",
+									"",
+									"var body = {",
+									"    locations // (Required) The list of Point locations by ID to be unlinked from this alert",
+									"};",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId/locations/unlink",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId",
+								"locations",
+								"unlink"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate an Alert",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0af25be6-22ad-43fd-84d6-d557fedfdc7a",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId/activate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId",
+								"activate"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate an Alert",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d014e90f-14a2-4f28-bd93-f245ddb67b3b",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId/deactivate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId",
+								"deactivate"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Alert",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "385dd3a1-f2e1-40be-8f72-730b8d18d7b3",
+								"exec": [
+									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
+									"",
+									"pm.environment.set('alertId', alertId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/:alertId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"alerts",
+								":alertId"
+							],
+							"variable": [
+								{
+									"key": "alertId",
+									"value": "{{alertId}}",
+									"type": "string",
+									"description": "(Required) ID of a pre-defined alert"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{apikey}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "apikey",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2abbcfe2-efe2-49f3-8fcb-bc3a3199c26d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7be7bb41-5073-43ba-b77a-1ecf89a8643c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a616bcd3-4277-4ef2-a560-07e2a56774e4",
+			"key": "baseUrl",
+			"value": "https://data.climacell.co/v4"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
