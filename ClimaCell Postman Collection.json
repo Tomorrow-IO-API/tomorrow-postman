@@ -24,12 +24,14 @@
 									"var fields = [\"precipitationIntensity\"];",
 									"var timesteps = [\"1m\"];",
 									"var location = [42.3492721,-71.0573512];",
+									"var units = \"metric\"",
 									"",
 									"pm.environment.set('startTime', startTime.toISOString());",
 									"pm.environment.set('endTime', endTime.toISOString());",
 									"pm.environment.set('fields', fields);",
 									"pm.environment.set('timesteps', timesteps);",
-									"pm.environment.set('location', location);"
+									"pm.environment.set('location', location);",
+									"pm.environment.set('units', units);"
 								],
 								"type": "text/javascript"
 							}
@@ -71,6 +73,11 @@
 									"key": "timesteps",
 									"value": "{{timesteps}}",
 									"description": "Timesteps of the timelines: \"1m\", \"5m\", \"15m\", \"30m\", \"1h\", \"1d\""
+								},
+								{
+									"key": "units",
+									"value": "{{units}}",
+									"description": "Units of field values, either \"metric\" or \"imperial\" (defaults to metric)"
 								}
 							]
 						}
@@ -98,6 +105,7 @@
 									"        -71.0573512,42.3492721",
 									"    ]",
 									"}",
+									"var units = \"metric\"",
 									"",
 									"var body = {",
 									"    startTime, // Start time in ISO 8601 format \"2019-03-20T14:09:50Z\" (defaults to now)",
@@ -105,6 +113,7 @@
 									"    fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if not suffix is not specified)",
 									"    timesteps, // Timesteps of the timelines: \"1m\", \"5m\", \"15m\", \"30m\", \"1h\", \"1d\"",
 									"    location // (Required) ID of a pre-defined location or latlong string",
+									"    units // Units of field values, either \"metric\" or \"imperial\" (defaults to metric)",
 									"}",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
@@ -275,13 +284,15 @@
 									"var startTime = moment.utc(now).add(360, 'minutes').toISOString();",
 									"var fields = [\"precipitationIntensity\"];",
 									"var timestep = \"5m\";",
-									"var legs = [{\"duration\":10,\"location\":{\"coordinates\":[[34.78187,32.08528],[34.78182,32.08529],[34.78172,32.08531],[34.78164,32.08531],[34.78152,32.08534],[34.7809,32.08549]],\"type\":\"LineString\"}},{\"duration\":3,\"location\":{\"coordinates\":[[34.7809,32.08549],[34.78098,32.08583],[34.78105,32.08614],[34.78117,32.08684],[34.78121,32.08705],[34.78135,32.08769],[34.78149,32.08832]],\"type\":\"LineString\"}},{\"duration\":9,\"location\":{\"coordinates\":[[34.78149,32.08832],[34.78215,32.08817],[34.78231,32.08814]],\"type\":\"LineString\"}},{\"duration\":2,\"location\":{\"coordinates\":[[34.78231,32.08814],[34.78242,32.08812],[34.78243,32.08818],[34.78246,32.08834],[34.7827,32.08949],[34.78281,32.09013],[34.78291,32.0907],[34.78292,32.09075],[34.78292,32.0908],[34.78294,32.09091],[34.78295,32.09096],[34.78296,32.091],[34.78305,32.09154],[34.78308,32.09165],[34.7831,32.09174],[34.78321,32.09234],[34.78331,32.09286],[34.7835,32.09384],[34.78351,32.0939],[34.78353,32.09401],[34.78355,32.09413],[34.78371,32.09498],[34.78371,32.09516],[34.78371,32.09523],[34.78373,32.09532],[34.78373,32.09538],[34.78374,32.09543],[34.78374,32.09555],[34.78374,32.09556],[34.78374,32.09565],[34.78373,32.09583],[34.78372,32.0959],[34.78372,32.09592],[34.78372,32.09595],[34.78372,32.09604],[34.78371,32.09613],[34.7837,32.09631],[34.78368,32.09658],[34.78368,32.09667],[34.78367,32.09671],[34.78367,32.0968],[34.78366,32.09687],[34.78365,32.09701],[34.78364,32.09725],[34.78364,32.09735],[34.78362,32.09761],[34.78361,32.09771],[34.78359,32.09805],[34.78358,32.09822]],\"type\":\"LineString\"}},{\"duration\":5,\"location\":{\"coordinates\":[[34.78358,32.09822],[34.78362,32.09834],[34.78364,32.09838],[34.78369,32.09844],[34.7837,32.09844],[34.78376,32.0985],[34.78377,32.0985],[34.78392,32.09861],[34.78405,32.09861],[34.78414,32.09862],[34.78462,32.09864],[34.78527,32.09867],[34.78685,32.09875],[34.78806,32.09882],[34.78895,32.09888],[34.78903,32.0989],[34.78971,32.09899],[34.7902,32.09909],[34.79049,32.09915],[34.79063,32.09918],[34.79087,32.09922],[34.79107,32.09926]],\"type\":\"LineString\"}}]",
+									"var legs = [{\"duration\":10,\"location\":{\"coordinates\":[[34.78187,32.08528],[34.78182,32.08529],[34.78172,32.08531],[34.78164,32.08531],[34.78152,32.08534],[34.7809,32.08549]],\"type\":\"LineString\"}},{\"duration\":5,\"location\":{\"coordinates\":[[34.7809,32.08549],[34.78098,32.08583],[34.78105,32.08614],[34.78117,32.08684],[34.78121,32.08705],[34.78135,32.08769],[34.78149,32.08832]],\"type\":\"LineString\"}}]",
+									"var units = \"metric\"",
 									"",
 									"var body = {",
 									"    startTime, // Start time in ISO 8601 format \"2019-03-20T14:09:50Z\" (defaults to now)",
 									"    legs, // (Required) Collection of route segments, each represented as a pair of location object and a duration (in minutes)",
 									"    fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if no suffix is specified)",
 									"    timestep, // Timestep of the route: \"5m\", \"10m\", \"15m\", \"30m\", \"60m\"",
+									"    units, // Units of field values, either \"metric\" or \"imperial\" (defaults to metric)",
 									"}",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
