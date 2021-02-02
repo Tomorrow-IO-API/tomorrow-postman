@@ -15,7 +15,7 @@ Follow these steps to quickly get started with the [ClimaCell API](https://docs.
 5. Change the query/path/body parameters by going to the "Pre-request Script" tab and modifying them
 6. Click "Send"
   
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b3560cae8c2c88c338b9)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/9e6e5cae982c127dc8c8)
 
 ## Collection endpoints
 The following collection is a fully-featured set of pre-filled requests that allow you to test the [ClimacCell API](https://docs.climacell.co/reference), and visualize the responses in a friendly format.
