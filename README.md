@@ -10,8 +10,8 @@ Follow these steps to quickly get started with the [ClimaCell API](https://docs.
 
 1. [Sign up](https://climacell.co/platforms) with ClimaCell to get a set of API keys that are required for interacting with the API.
 2. Download and install the [Postman app](https://www.getpostman.com/downloads/)
-3. Import "ClimaCell Postman Collection" file or click the button below to install the ClimaCell Postman collection!
-4. Import "ClimaCell Production Environment" and add your `apikey` that you grabbed from our [Development Section](https://app.climacell.co)
+3. Import ["ClimaCell Postman Collection"](https://github.com/ClimaCell-API/climacell-postman/blob/main/ClimaCell%20Postman%20Collection.json) file or click the button below to install the ClimaCell Postman collection!
+4. Import ["ClimaCell Production Environment"](https://github.com/ClimaCell-API/climacell-postman/blob/main/ClimaCell%20Production%20Environment.json) file and add your `apikey` that you grabbed from our [Development Section](https://app.climacell.co)
 5. Change the query/path/body parameters by going to the "Pre-request Script" tab and modifying them
 6. Click "Send"
   
