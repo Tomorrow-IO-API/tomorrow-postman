@@ -1,31 +1,31 @@
-# ClimaCell Postman Collection
-This quickstart is a step-by-step guide that will get you up and running with Postman and the ClimaCell  [Postman Collection](https://learning.postman.com/docs/postman/collections/intro-to-collections/).
+# Tomorrow.io Postman Collection
+This quickstart is a step-by-step guide that will get you up and running with Postman and the Tomorrow.io [Postman Collection](https://learning.postman.com/docs/postman/collections/intro-to-collections/).
 
-If you are looking for a more in-depth guide and reference for the ClimaCell API, please refer to the [ClimaCell API documentation](https://docs.climacell.co/reference).
+If you are looking for a more in-depth guide and reference for the Tomorrow.io API, please refer to the [Tomorrow.io API documentation](https://docs.tomorrow.io/reference).
 
 ![postman-overview](/images/postman.png)
 
 ## Getting started
-Follow these steps to quickly get started with the [ClimaCell API](https://docs.climacell.co):
+Follow these steps to quickly get started with the [Tomorrow.io API](https://docs.tomorrow.io):
 
-1. [Sign up](https://climacell.co/platforms) with ClimaCell to get a set of API keys that are required for interacting with the API.
+1. [Sign up](https://tomorrow.io/platforms) with Tomorrow.io to get a set of API keys that are required for interacting with the API.
 2. Download and install the [Postman app](https://www.getpostman.com/downloads/)
-3. Import "ClimaCell Postman Collection" file or click the button below to install the ClimaCell Postman collection!
-4. Import "ClimaCell Production Environment" and add your `apikey` that you grabbed from our [Development Section](https://app.climacell.co)
+3. Import "Tomorrow Postman Collection" file or click the button below to install the Tomorrow.io Postman collection!
+4. Import "Tomorrow Production Environment" and add your `apikey` that you grabbed from our [Development Section](https://app.tomorrow.io)
 5. Change the query/path/body parameters by going to the "Pre-request Script" tab and modifying them
 6. Click "Send"
   
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/9e6e5cae982c127dc8c8)
 
 ## Collection endpoints
-The following collection is a fully-featured set of pre-filled requests that allow you to test the [ClimacCell API](https://docs.climacell.co/reference), and visualize the responses in a friendly format.
-* [Timeline (GET/POST)](https://docs.climacell.co/reference/timeline-overview)
-* [Events (GET/POST)](https://docs.climacell.co/reference/events-overview)
-* [Route (POST)](https://docs.climacell.co/reference/route-overview)
-* [Map › Tile (GET)](https://docs.climacell.co/reference/map-overview)
-* [Locations](https://docs.climacell.co/reference/locations-overview)
-* [Insights](https://docs.climacell.co/reference/insights-overview)
-* [Alerts](https://docs.climacell.co/reference/alerts-overview)
+The following collection is a fully-featured set of pre-filled requests that allow you to test the [Tomorrow.io API](https://docs.tomorrow.io/reference), and visualize the responses in a friendly format.
+* [Timeline (GET/POST)](https://docs.tomorrow.io/reference/timeline-overview)
+* [Events (GET/POST)](https://docs.tomorrow.ioreference/events-overview)
+* [Route (POST)](https://docs.tomorrow.io/reference/route-overview)
+* [Map › Tile (GET)](https://docs.tomorrow.io/reference/map-overview)
+* [Locations](https://docs.tomorrow.io/reference/locations-overview)
+* [Insights](https://docs.tomorrow.io/reference/insights-overview)
+* [Alerts](https://docs.tomorrow.io/reference/alerts-overview)
 
 ## Useful Tools
 [JSON to CSV](https://json-csv.com/) can be used to transform a timeline to an CSV - just make sure to flatten the values before using the one-liner js code below and change RESPONSE to the one you got from our API.

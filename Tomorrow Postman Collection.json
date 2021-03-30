@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "f71ecaad-cc12-4129-a510-8b6ef0ed31c7",
-		"name": "ClimaCell API",
+		"name": "Tomorrow.io API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -517,7 +517,7 @@
 									"var moment = require('moment');",
 									"var now = moment.utc();",
 									"",
-									"var name = \"ClimaCell Headquarters\";",
+									"var name = \"Tomorrow.io Headquarters\";",
 									"var geometry = {",
 									"    \"type\": \"Point\",",
 									"    \"coordinates\": [",
@@ -976,7 +976,7 @@
 							"script": {
 								"id": "55e3bb44-5831-4ac5-aa5e-77d33ad8a3c5",
 								"exec": [
-									"var name = \"Mild Rain at the ClimaCell Headquarters\";",
+									"var name = \"Mild Rain at the Tomorrow.io Headquarters\";",
 									"var insight = \"3314686b-0525-4cd0-908e-f110df44ab23\";",
 									"var isActive = true;",
 									"var notifications = [",
@@ -1034,7 +1034,7 @@
 								"id": "dbaaec72-7b5e-4cf1-93e3-14501d464ec3",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
-									"var name = \"Mild Rain at the ClimaCell Headquarters\";",
+									"var name = \"Mild Rain at the Tomorrow.io Headquarters\";",
 									"var notifications = [",
 									"  {\"type\": \"PRIOR\", \"value\": 30},",
 									"  {\"type\": \"START\"},",
@@ -1422,7 +1422,7 @@
 		{
 			"id": "a616bcd3-4277-4ef2-a560-07e2a56774e4",
 			"key": "baseUrl",
-			"value": "https://data.climacell.co/v4"
+			"value": "https://api.tomorrow.io/v4"
 		}
 	],
 	"protocolProfileBehavior": {}

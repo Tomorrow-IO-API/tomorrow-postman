@@ -1,5 +1,5 @@
 {
-	"name": "ClimaCell API",
+	"name": "Tomorrow.io API",
 	"values": [
 		{
 			"key": "apikey",
@@ -8,7 +8,7 @@
 		},
 		{
 			"key": "baseUrl",
-			"value": "https://data.climacell.co/v4",
+			"value": "https://api.tomorrow.io/v4",
 			"enabled": true
 		}
 	],
