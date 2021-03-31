@@ -311,6 +311,6 @@
       "5": "Very High"
     },
     "windDirection": "degrees",
-    "windGust": "mph",
-    "windSpeed": "mph"
+    "windGust": "ft/s",
+    "windSpeed": "ft/s"
   }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f71ecaad-cc12-4129-a510-8b6ef0ed31c7",
+		"_postman_id": "a5415f9d-2476-4b0b-aa73-aba99b8e5376",
 		"name": "Tomorrow.io API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b2bb1a40-91cb-4ccf-96d6-976319c750a8",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -43,7 +42,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/timelines?location={{location}}&fields={{fields}}&startTime={{startTime}}&endTime={{endTime}}&timesteps={{timesteps}}",
+							"raw": "{{baseUrl}}/timelines?location={{location}}&fields={{fields}}&startTime={{startTime}}&endTime={{endTime}}&timesteps={{timesteps}}&units={{units}}&timezone={{timezone}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -97,7 +96,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "59fb0779-da7b-4817-9ada-5da70b01bfa6",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -141,10 +139,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/timelines",
@@ -158,8 +153,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "events",
@@ -170,7 +164,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "1af39c22-a2ae-438e-aa35-53708b444ce2",
 								"exec": [
 									"var location = [42.3492721,-71.0573512];",
 									"var insights = [\"fires\"];",
@@ -223,7 +216,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2a17e137-0e90-4dd2-81ef-4a2d102d90a8",
 								"exec": [
 									"var location = {",
 									"    \"type\": \"Point\",",
@@ -256,10 +248,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/events",
@@ -273,8 +262,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "route",
@@ -285,7 +273,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "509edd25-8a05-4c75-a20d-073ddec70380",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -341,7 +328,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f54b8f95-96d6-4ea7-a255-425e78b20724",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -351,15 +337,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3c3d102e-9151-4018-976e-48902ee490c9",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "map",
@@ -370,7 +354,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "dd64da73-1a95-4f5d-a0bd-b07dfd2fc550",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -418,19 +401,16 @@
 								{
 									"key": "x",
 									"value": "{{x}}",
-									"type": "string",
 									"description": "(Required) The “x” coordinate for the map"
 								},
 								{
 									"key": "y",
 									"value": "{{y}}",
-									"type": "string",
 									"description": "(Required) The “y” coordinate for the map"
 								},
 								{
 									"key": "field",
 									"value": "{{field}}",
-									"type": "string",
 									"description": "(Required) Selected fields from our data layers"
 								},
 								{
@@ -443,8 +423,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "locations",
@@ -472,7 +451,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a9d3a248-226d-4752-b04a-4ce1a49e74b0",
 								"exec": [
 									"var locationId = \"5fb7dc8fd4f7cd0008a64456\";",
 									"",
@@ -498,7 +476,6 @@
 								{
 									"key": "locationId",
 									"value": "{{locationId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined location"
 								}
 							]
@@ -512,7 +489,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "9d0cfffd-588d-48f6-abe5-a863ec7b4bd7",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -546,10 +522,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/locations",
@@ -569,7 +542,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "12a102cf-045f-4a76-9d09-2ced6f97b94c",
 								"exec": [
 									"var locationId = \"5fb7dc8fd4f7cd0008a64456\";",
 									"",
@@ -595,7 +567,6 @@
 								{
 									"key": "locationId",
 									"value": "{{locationId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined location"
 								}
 							]
@@ -603,8 +574,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "insights",
@@ -632,7 +602,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d4491980-3026-402d-bb65-094982df72d1",
 								"exec": [
 									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\";",
 									"",
@@ -658,7 +627,6 @@
 								{
 									"key": "insightId",
 									"value": "{{insightId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined insight"
 								}
 							]
@@ -672,7 +640,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "fec15fce-0a10-4684-9b4d-06eafcb9aba6",
 								"exec": [
 									"var name = \"Mild Rain\";",
 									"var conditions = {",
@@ -743,10 +710,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/insights",
@@ -766,7 +730,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "9857bf27-03b8-47c3-82d6-0b27dea683fc",
 								"exec": [
 									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\"",
 									"var name = \"Mild Rain\";",
@@ -839,10 +802,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/insights/:insightId",
@@ -857,7 +817,6 @@
 								{
 									"key": "insightId",
 									"value": "{{insightId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined insight"
 								}
 							]
@@ -871,7 +830,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "adf1f121-3f44-4272-bff8-1160859b31e2",
 								"exec": [
 									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\";",
 									"",
@@ -897,7 +855,6 @@
 								{
 									"key": "insightId",
 									"value": "{{insightId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined insight"
 								}
 							]
@@ -905,8 +862,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "alerts",
@@ -934,7 +890,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "fa84fa60-90a7-452d-ba20-d22d561cf6f0",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
@@ -960,7 +915,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -974,7 +928,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "55e3bb44-5831-4ac5-aa5e-77d33ad8a3c5",
 								"exec": [
 									"var name = \"Mild Rain at the Tomorrow.io Headquarters\";",
 									"var insight = \"3314686b-0525-4cd0-908e-f110df44ab23\";",
@@ -1008,10 +961,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/alerts",
@@ -1031,7 +981,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "dbaaec72-7b5e-4cf1-93e3-14501d464ec3",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"var name = \"Mild Rain at the Tomorrow.io Headquarters\";",
@@ -1063,10 +1012,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/alerts/:alertId",
@@ -1081,7 +1027,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -1095,7 +1040,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a385fbbb-a3f6-4620-b607-8aa075789c49",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
@@ -1122,7 +1066,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -1136,7 +1079,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "569d1a60-0609-4b6f-8331-7b89e52c69a6",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"var locations = [\"5fd9dfc6ffcd6e00075e4ac0\"];",
@@ -1162,10 +1104,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/alerts/:alertId/locations/link",
@@ -1182,7 +1121,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -1196,7 +1134,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "718686b2-5adb-4279-8349-8eb8074ff4b8",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"var locations = [\"5fd9dfc6ffcd6e00075e4ac0\"];",
@@ -1222,10 +1159,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{body}}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{{body}}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/alerts/:alertId/locations/unlink",
@@ -1242,7 +1176,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -1256,7 +1189,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0af25be6-22ad-43fd-84d6-d557fedfdc7a",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
@@ -1283,7 +1215,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -1297,7 +1228,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d014e90f-14a2-4f28-bd93-f245ddb67b3b",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
@@ -1324,7 +1254,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -1338,7 +1267,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "385dd3a1-f2e1-40be-8f72-730b8d18d7b3",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
@@ -1364,7 +1292,6 @@
 								{
 									"key": "alertId",
 									"value": "{{alertId}}",
-									"type": "string",
 									"description": "(Required) ID of a pre-defined alert"
 								}
 							]
@@ -1372,8 +1299,176 @@
 					},
 					"response": []
 				}
+			]
+		},
+		{
+			"name": "testers",
+			"item": [
+				{
+					"name": "Test Webhook Listener",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var isCustomInsight = false;",
+									"",
+									"var payload = isCustomInsight ? {",
+									"    \"data\": {",
+									"        \"alert\":{",
+									"            \"id\": \"3805b6c8-dd6f-4dac-9dc2-fb9ea2702a80\",",
+									"            \"insight\": \"bd9faf50-bf00-4d09-a5e3-413799c05609\",",
+									"            \"name\": \"Moderate Snow in Pacific Central Station, Vancouver\",",
+									"            \"isActive\": true,",
+									"            \"notifications\": [",
+									"                {",
+									"                    \"type\": \"PRIOR\",",
+									"                    \"value\": 120,",
+									"                    \"title\": \"Monitor: Moderate Snow Expected within 2 Hours\",",
+									"                    \"description\": \"Look out for surge caused by incoming moderate snow (<2mm).\",",
+									"                },",
+									"                {",
+									"                    \"type\": \"END\",",
+									"                    \"title\": \"All Clear: Moderate Snow Ended\",",
+									"                    \"description\": \"Back to normal, snowfall has ended.\",",
+									"                }",
+									"            ],",
+									"            \"createdAt\": \"2021-03-25T16:49:34+0000\"",
+									"        ",
+									"    },",
+									"        \"insight\": {",
+									"            \"id\": \"bd9faf50-bf00-4d09-a5e3-413799c05609\"",
+									"        },",
+									"        \"locations\": [",
+									"          { \"id\": \"38f689d83c264eb0b084ba39975f3413\" }, ",
+									"        ],         ",
+									"        \"notification\": {",
+									"            \"type\": \"PRIOR\",",
+									"            \"value\": 30,",
+									"            \"title\": \"Low Visibility Advisory\",",
+									"            \"description\": \"* WHAT... Visibility 1km or less * WHEN... in 30 minutes * IMPACTS... Hazardous driving conditions due to low visibility * ACTIONS... If driving, slow down, use your headlights, and leave plenty of distance ahead of you.\"",
+									"        },",
+									"        \"event\": {",
+									"            \"startTime\": \"2020-05-10T07:49:34+0000\",",
+									"            \"eventValues\": {",
+									"                \"visibility\": 0.52",
+									"            },",
+									"            \"triggerValues\": {",
+									"                \"visibility\": 0.52",
+									"            }",
+									"        }",
+									"    }",
+									"} : {",
+									"    \"data\": {",
+									"        \"alert\":             ",
+									"        {",
+									"            \"id\": \"3805b6c8-dd6f-4dac-9dc2-fb9ea2702a73\",",
+									"            \"insight\": \"floods\",",
+									"            \"name\": \"Flood Hazards\",",
+									"            \"isActive\": true,",
+									"            \"notifications\":  [",
+									"              {",
+									"                type: \"PUBLISHED\",",
+									"                title: \"Floow Hazard Report\",",
+									"                description:",
+									"                  \"Our sourced issued a new flood hazard announcement. Stay safe.\",",
+									"              },",
+									"            ],",
+									"            \"createdAt\": \"2021-03-25T06:49:34+0000\"",
+									"        },",
+									"        \"insight\": {",
+									"            \"id\": \"floods\",",
+									"        },",
+									"        \"location\": { \"id\": \"5ea83909b9dc140008627002\" }, // DEPRECATED  ",
+									"        \"locations\": [",
+									"          { \"id\": \"5ea83909b9dc140008627002\" }, ",
+									"          { \"id\": \"5ea83909b9dc140008627003\" }, ",
+									"          { \"id\": \"5ea83909b9dc140008627004\" },",
+									"        ],",
+									"        \"notification\": {",
+									"            \"type\": \"PUBLISH\",",
+									"            \"title\": \"Flood Hazard\",",
+									"            \"description\": \"A flood hazard has been published. Review hazard details. \"",
+									"        },",
+									"        \"event\": {",
+									"            \"startTime\": \"2020-10-13T18:12:00Z\",             ",
+									"            \"endTime\": \"2020-10-14T15:06:26.261668224Z\",     ",
+									"            \"updateTime\": \"2020-10-13T18:12:00Z\",            ",
+									"            \"severity\": \"unknown\",                           ",
+									"            \"certainty\": \"likely\",                         ",
+									"            \"urgency\": \"unknown\",                            ",
+									"            \"source\": \"https://alerts.weather.gov/cap/...\",  ",
+									"            \"eventValues\": {",
+									"                  \"origin\": \"NWS\",                           ",
+									"                  \"title\": \"Small Craft Advisory\",          ",
+									"                  \"description\": \"* WHAT...Northwest... \",   ",
+									"                  \"instruction\": \"Inexperienced... \",        ",
+									"                  \"response\": \"avoid\",                       ",
+									"                  \"geocodes\": [\"PZZ576\"],                    ",
+									"                  \"location\": {type:\"Point\", \"coordinates\": [-86.660156, 35.860119]},              ",
+									"                },",
+									"            }",
+									"        }",
+									"};",
+									"",
+									"var body = payload;",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				}
 			],
-			"protocolProfileBehavior": {}
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	],
 	"auth": {
@@ -1400,7 +1495,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "2abbcfe2-efe2-49f3-8fcb-bc3a3199c26d",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1410,7 +1504,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "7be7bb41-5073-43ba-b77a-1ecf89a8643c",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1420,10 +1513,8 @@
 	],
 	"variable": [
 		{
-			"id": "a616bcd3-4277-4ef2-a560-07e2a56774e4",
 			"key": "baseUrl",
 			"value": "https://api.tomorrow.io/v4"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
