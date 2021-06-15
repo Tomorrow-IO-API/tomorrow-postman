@@ -20,7 +20,7 @@ Follow these steps to quickly get started with the [Tomorrow.io API](https://doc
 ## Collection endpoints
 The following collection is a fully-featured set of pre-filled requests that allow you to test the [Tomorrow.io API](https://docs.tomorrow.io/reference), and visualize the responses in a friendly format.
 * [Timeline (GET/POST)](https://docs.tomorrow.io/reference/timeline-overview)
-* [Events (GET/POST)](https://docs.tomorrow.ioreference/events-overview)
+* [Events (GET/POST)](https://docs.tomorrow.io/reference/events-overview)
 * [Route (POST)](https://docs.tomorrow.io/reference/route-overview)
 * [Map › Tile (GET)](https://docs.tomorrow.io/reference/map-overview)
 * [Locations](https://docs.tomorrow.io/reference/locations-overview)
