@@ -277,7 +277,7 @@
 									"var moment = require('moment');",
 									"var now = moment.utc();",
 									"",
-									"var startTime = moment.utc(now).add(360, 'minutes').toISOString();",
+									"var startTime = moment.utc(now).add(60, 'minutes').toISOString();",
 									"var fields = [\"precipitationIntensity\"];",
 									"var timestep = \"5m\";",
 									"var legs = [{\"duration\":10,\"location\":{\"coordinates\":[[34.78187,32.08528],[34.78182,32.08529],[34.78172,32.08531],[34.78164,32.08531],[34.78152,32.08534],[34.7809,32.08549]],\"type\":\"LineString\"}},{\"duration\":5,\"location\":{\"coordinates\":[[34.7809,32.08549],[34.78098,32.08583],[34.78105,32.08614],[34.78117,32.08684],[34.78121,32.08705],[34.78135,32.08769],[34.78149,32.08832]],\"type\":\"LineString\"}}]",
