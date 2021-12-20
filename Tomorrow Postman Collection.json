@@ -537,6 +537,41 @@
 					"response": []
 				},
 				{
+				"name": "Update a Location",
+				"request": {
+					"method": "PUT",
+					"header": [],
+					"body": {
+						"mode": "urlencoded",
+						"urlencoded": [
+							{
+								"key": "name",
+								"value": "<NAME GOES HERE>",
+								"type": "text"
+							}
+						]
+					},
+					"url": {
+						"raw": "{{baseUrl}}/locations/:locationId",
+						"host": [
+							"{{baseUrl}}"
+						],
+						"path": [
+							"locations",
+							":locationId"
+						],
+						"variable": [
+							{
+								"key": "locationId",
+								"value": "{{locationId}}",
+								"description": "(Required) ID of a pre-defined location"
+							}
+						]
+					}
+				},
+				"response": []
+			},
+				{
 					"name": "Delete a Location",
 					"event": [
 						{
