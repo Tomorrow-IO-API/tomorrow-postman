@@ -15,7 +15,7 @@ Follow these steps to quickly get started with the [Tomorrow.io API](https://doc
 5. Change the query/path/body parameters by going to the "Pre-request Script" tab and modifying them
 6. Click "Send"
   
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/75821482bacbafce3d79)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/7001532f71e1b3ddbdad)
 
 ## Collection endpoints
 The following collection is a fully-featured set of pre-filled requests that allow you to test the [Tomorrow.io API](https://docs.tomorrow.io/reference), and visualize the responses in a friendly format.
