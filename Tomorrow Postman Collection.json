@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a5415f9d-2476-4b0b-aa73-aba99b8e5376",
+		"_postman_id": "5414f2e3-6479-4867-b422-5300a46de1af",
 		"name": "Tomorrow.io API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,6 +14,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -33,8 +34,7 @@
 									"pm.environment.set('location', location);",
 									"pm.environment.set('units', units);",
 									"pm.environment.set('timezone', timezone);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -96,6 +96,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -124,8 +125,7 @@
 									"}",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -156,6 +156,152 @@
 			]
 		},
 		{
+			"name": "historical",
+			"item": [
+				{
+					"name": "Retrieve Historical Timeline",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require('moment');",
+									"var now = moment.utc();",
+									"",
+									"var startTime = moment.utc(now).add(-130, 'days').toISOString();",
+									"var endTime = moment.utc(now).add(-100, 'days').toISOString();",
+									"var fields = [\"totalPrecipitationAccumulation\",\"windSpeedMax\", \"windSpeed100\", \"temperatureMaxTime\", \"humidity\"];",
+									"var timesteps = [\"1d\"];",
+									"var location = [32.74803421602789, -97.09298781655534]",
+									"var units = \"metric\"",
+									"var timezone = \"UTC\"",
+									"",
+									"var body = {",
+									"    startTime, // Start time in ISO 8601 format \"2019-03-20T14:09:50Z\" ",
+									"    endTime, // End time in ISO 8601 format \"2019-03-20T14:09:50Z\"",
+									"    fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if not suffix is not specified)",
+									"    timesteps, // Timesteps of the timelines: \"1h\", \"1d\"",
+									"    location, // (Required) ID of a pre-defined location, latlong string, polygon or polyline",
+									"    units, // Units of field values, either \"metric\" or \"imperial\" (defaults to metric)",
+									"    timezone // Timezone of time values, according to IANA Timezone Names (defaults to UTC)",
+									"}",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/historical",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"historical"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Historical Timeline by polygon",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require('moment');",
+									"var now = moment.utc();",
+									"",
+									"var startTime = moment.utc(now).add(-130, 'days').toISOString();",
+									"var endTime = moment.utc(now).add(-100, 'days').toISOString();",
+									"var fields = [\"totalPrecipitationAccumulation\",\"windSpeedMax\", \"windSpeed100\", \"temperatureMaxTime\", \"humidity\"];",
+									"var timesteps = [\"1d\"];",
+									"var location = {\"type\": \"Polygon\",",
+									"    \"coordinates\": [",
+									"          [",
+									"            [",
+									"              -73.9710545539856,",
+									"              40.767232894792066",
+									"            ],",
+									"            [",
+									"              -73.97461652755737,",
+									"              40.76815921628347",
+									"            ],",
+									"            [",
+									"              -73.97667646408081,",
+									"              40.76593277267437",
+									"            ],",
+									"            [",
+									"              -73.97287845611572,",
+									"              40.76429133217449",
+									"            ],",
+									"            [",
+									"              -73.9710545539856,",
+									"              40.767232894792066",
+									"            ]",
+									"          ]",
+									"        ]",
+									"  }",
+									"var units = \"metric\"",
+									"var timezone = \"UTC\"",
+									"",
+									"var body = {",
+									"    startTime, // Start time in ISO 8601 format \"2019-03-20T14:09:50Z\" ",
+									"    endTime, // End time in ISO 8601 format \"2019-03-20T14:09:50Z\"",
+									"    fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if not suffix is not specified)",
+									"    timesteps, // Timesteps of the timelines: \"1h\", \"1d\"",
+									"    location, // (Required) ID of a pre-defined location, latlong string, polygon or polyline",
+									"    units, // Units of field values, either \"metric\" or \"imperial\" (defaults to metric)",
+									"    timezone // Timezone of time values, according to IANA Timezone Names (defaults to UTC)",
+									"}",
+									"",
+									"pm.environment.set('body', JSON.stringify(body));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/historical",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"historical"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "events",
 			"item": [
 				{
@@ -164,6 +310,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var location = [42.3492721,-71.0573512];",
 									"var insights = [\"fires\"];",
@@ -173,8 +320,7 @@
 									"pm.environment.set('insights', insights);",
 									"pm.environment.set('buffer', buffer);",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -216,6 +362,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var location = {",
 									"    \"type\": \"Point\",",
@@ -233,8 +380,7 @@
 									"}",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -273,6 +419,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -294,8 +441,7 @@
 									"}",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -354,6 +500,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var moment = require('moment');",
 									"var now = moment.utc();",
@@ -370,8 +517,7 @@
 									"pm.environment.set('y', y);",
 									"pm.environment.set('field', field);",
 									"pm.environment.set('timeFormat', time + \".\" + format);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -451,12 +597,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var locationId = \"5fb7dc8fd4f7cd0008a64456\";",
 									"",
 									"pm.environment.set('locationId', locationId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -490,19 +636,17 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"var moment = require('moment');",
-									"var now = moment.utc();",
-									"",
 									"var name = \"Tomorrow.io Headquarters\";",
+									"var tags = [\"Group 1\", \"Tom's team\"];",
 									"var geometry = {",
 									"    \"type\": \"Point\",",
 									"    \"coordinates\": [",
 									"        -71.0573512,42.3492721",
 									"    ]",
 									"};",
-									"",
 									"var body = {",
 									"    name, // (Required) The name of the location",
+									"    tags,",
 									"    geometry, // (Required) The GeoJSON geometry representation of the location object",
 									"}",
 									"",
@@ -537,52 +681,52 @@
 					"response": []
 				},
 				{
-				"name": "Update a Location",
-				"request": {
-					"method": "PUT",
-					"header": [],
-					"body": {
-						"mode": "urlencoded",
-						"urlencoded": [
-							{
-								"key": "name",
-								"value": "<NAME GOES HERE>",
-								"type": "text"
-							}
-						]
+					"name": "Update a Location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "<NAME GOES HERE>",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations/:locationId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								":locationId"
+							],
+							"variable": [
+								{
+									"key": "locationId",
+									"value": "{{locationId}}",
+									"description": "(Required) ID of a pre-defined location"
+								}
+							]
+						}
 					},
-					"url": {
-						"raw": "{{baseUrl}}/locations/:locationId",
-						"host": [
-							"{{baseUrl}}"
-						],
-						"path": [
-							"locations",
-							":locationId"
-						],
-						"variable": [
-							{
-								"key": "locationId",
-								"value": "{{locationId}}",
-								"description": "(Required) ID of a pre-defined location"
-							}
-						]
-					}
+					"response": []
 				},
-				"response": []
-			},
 				{
 					"name": "Delete a Location",
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var locationId = \"5fb7dc8fd4f7cd0008a64456\";",
 									"",
 									"pm.environment.set('locationId', locationId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -604,6 +748,96 @@
 									"value": "{{locationId}}",
 									"description": "(Required) ID of a pre-defined location"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Location Tags",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "locations",
+									"value": "[\"location id\", \"location id\"]",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "[\"tag1\", \"tag2\"]",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations/tags/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"tags",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Location Tags",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "locations",
+									"value": "[\"location id\", \"location id\"]",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "[\"tag1\", \"tag2\"]",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations/tags/remove",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"tags",
+								"remove"
 							]
 						}
 					},
@@ -637,12 +871,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\";",
 									"",
 									"pm.environment.set('insightId', insightId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -675,6 +909,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var name = \"Mild Rain\";",
 									"var conditions = {",
@@ -730,8 +965,7 @@
 									"}",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -765,6 +999,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\"",
 									"var name = \"Mild Rain\";",
@@ -822,8 +1057,7 @@
 									"",
 									"pm.environment.set('insightId', insightId)",
 									"pm.environment.set('body', JSON.stringify(body));"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -865,12 +1099,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var insightId = \"d73c2d38-79b2-4761-9a92-d063dea11190\";",
 									"",
 									"pm.environment.set('insightId', insightId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -925,12 +1159,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -963,6 +1197,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var name = \"Mild Rain at the Tomorrow.io Headquarters\";",
 									"var insight = \"3314686b-0525-4cd0-908e-f110df44ab23\";",
@@ -981,8 +1216,7 @@
 									"};",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1016,6 +1250,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"var name = \"Mild Rain at the Tomorrow.io Headquarters\";",
@@ -1032,8 +1267,7 @@
 									"",
 									"pm.environment.set('body', JSON.stringify(body));",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1075,12 +1309,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1114,6 +1348,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"var locations = [\"5fd9dfc6ffcd6e00075e4ac0\"];",
@@ -1124,8 +1359,7 @@
 									"",
 									"pm.environment.set('body', JSON.stringify(body));",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1169,6 +1403,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"var locations = [\"5fd9dfc6ffcd6e00075e4ac0\"];",
@@ -1179,8 +1414,7 @@
 									"",
 									"pm.environment.set('body', JSON.stringify(body));",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1224,12 +1458,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1263,12 +1497,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1302,12 +1536,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var alertId = \"01e4db7d-4446-4e61-b411-45e97bcc5909\";",
 									"",
 									"pm.environment.set('alertId', alertId);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1345,6 +1579,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"var isCustomInsight = false;",
 									"",
@@ -1449,8 +1684,7 @@
 									"var body = payload;",
 									"",
 									"pm.environment.set('body', JSON.stringify(body));"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1550,6 +1784,10 @@
 		{
 			"key": "baseUrl",
 			"value": "https://api.tomorrow.io/v4"
+		},
+		{
+			"key": "locationId",
+			"value": "6183d156022c1b0008685cc6"
 		}
 	]
 }
