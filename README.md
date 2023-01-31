@@ -15,7 +15,7 @@ Follow these steps to quickly get started with the [Tomorrow.io API](https://doc
 5. Change the query/path/body parameters by going to the "Pre-request Script" tab and modifying them
 6. Click "Send"
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/17764885-41d38d4c-1794-43f8-ba17-ac8536e1a7b8?action=collection%2Ffork&collection-url=entityId%3D17764885-41d38d4c-1794-43f8-ba17-ac8536e1a7b8%26entityType%3Dcollection%26workspaceId%3D998d1dbd-2191-4004-a2e4-f8627db02a40)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/17764885-41d38d4c-1794-43f8-ba17-ac8536e1a7b8?collection-url=entityId%3D17764885-41d38d4c-1794-43f8-ba17-ac8536e1a7b8%26entityType%3Dcollection%26workspaceId%3D998d1dbd-2191-4004-a2e4-f8627db02a40)
 
 
 ## Collection endpoints
