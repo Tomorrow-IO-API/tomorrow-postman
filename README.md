@@ -14,12 +14,16 @@ Follow these steps to quickly get started with the [Tomorrow.io API](https://doc
 4. Import ["Tomorrow.io Production Environment"](https://github.com/Tomorrow-IO-API/tomorrow-postman/blob/main/Tomorrow%20Production%20Environment.json) file and add your `apikey` that you grabbed from our [Development Section](https://app.tomorrow.io)
 5. Change the query/path/body parameters by going to the "Pre-request Script" tab and modifying them
 6. Click "Send"
-  
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/ab165384adc4cdd1498b?action=collection%2Fimport)
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/17764885-41d38d4c-1794-43f8-ba17-ac8536e1a7b8?action=collection%2Ffork&collection-url=entityId%3D17764885-41d38d4c-1794-43f8-ba17-ac8536e1a7b8%26entityType%3Dcollection%26workspaceId%3D998d1dbd-2191-4004-a2e4-f8627db02a40)
+
 
 ## Collection endpoints
 The following collection is a fully-featured set of pre-filled requests that allow you to test the [Tomorrow.io API](https://docs.tomorrow.io/reference), and visualize the responses in a friendly format.
+
 * [Timeline (GET/POST)](https://docs.tomorrow.io/reference/timeline-overview)
+* [Hisotrical (POST)](https://docs.tomorrow.io/reference/historical-overview)
+* [Climate (POST)](https://docs.tomorrow.io/reference/climate-normals)
 * [Events (GET/POST)](https://docs.tomorrow.io/reference/events-overview)
 * [Route (POST)](https://docs.tomorrow.io/reference/route-overview)
 * [Map › Tile (GET)](https://docs.tomorrow.io/reference/map-overview)
