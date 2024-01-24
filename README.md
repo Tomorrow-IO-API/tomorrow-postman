@@ -22,7 +22,7 @@ Follow these steps to quickly get started with the [Tomorrow.io API](https://doc
 The following collection is a fully-featured set of pre-filled requests that allow you to test the [Tomorrow.io API](https://docs.tomorrow.io/reference), and visualize the responses in a friendly format.
 
 * [Timeline (GET/POST)](https://docs.tomorrow.io/reference/timeline-overview)
-* [Hisotrical (POST)](https://docs.tomorrow.io/reference/historical-overview)
+* [Historical (POST)](https://docs.tomorrow.io/reference/historical-overview)
 * [Climate (POST)](https://docs.tomorrow.io/reference/climate-normals)
 * [Events (GET/POST)](https://docs.tomorrow.io/reference/events-overview)
 * [Route (POST)](https://docs.tomorrow.io/reference/route-overview)
@@ -32,7 +32,7 @@ The following collection is a fully-featured set of pre-filled requests that all
 * [Alerts](https://docs.tomorrow.io/reference/alerts-overview)
 
 ## Useful Tools
-[JSON to CSV](https://json-csv.com/) can be used to transform a timeline to an CSV - just make sure to flatten the values before using the one-liner js code below and change RESPONSE to the one you got from our API.
+[JSON to CSV](https://json-csv.com/) can be used to transform a timeline to a CSV - just make sure to flatten the values before using the one-liner js code below and change RESPONSE to the one you got from our API.
 
 ```
 (RESPONSE).data.timelines[0].intervals.map(obj => Object.assign({}, ...function _flatten(o) { return [].concat(...Object.keys(o).map(k => typeof o[k] === 'object' ? _flatten(o[k]) : ({[k]: o[k]})))}(obj)))
